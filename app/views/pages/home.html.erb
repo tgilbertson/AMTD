@@ -1,7 +1,7 @@
 <div class="jumbotron center">
      <h1>AMT Dashboards</h1>
      <% if user_signed_in? %>
-          
+
           <!-- line chart canvas element -->
         <canvas id="buyers" width="600" height="400"></canvas>
         <!-- pie chart canvas element -->
@@ -9,7 +9,9 @@
         <!-- bar chart canvas element -->
         <canvas id="income" width="600" height="400"></canvas>
         <script>
+
             // line chart data
+            
             var buyerData = {
                 labels : ["January","February","March","April","May","June"],
                 datasets : [
@@ -22,8 +24,22 @@
                 }
             ]
             }
-            // get line chart canvas
+//          This is code to resize the graph, but it redraws the graph
+//          and hover over with mouse trips the graph out.
+
+/*            var width = $('canvas').parent().width();
+            $('canvas').attr("width",width);
             var buyers = document.getElementById('buyers').getContext('2d');
+            new Chart(buyers).Line(buyerData);
+            window.onresize = function(event){
+                var width = $('canvas').parent().width();
+                $('canvas').attr("width",width);
+                new Chart(buyers).Line(buyerData);
+            };
+*/
+
+            // get line chart canvas
+            var buyers = $("#buyers").get(0).getContext('2d');
             // draw line chart
             new Chart(buyers).Line(buyerData);
             // pie chart data
